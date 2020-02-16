@@ -20,7 +20,34 @@ void ATankPlayerController::BeginPlay()
 }
 
 
+void ATankPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	//UE_LOG(LogTemp, Warning, TEXT("TankPlayerController ticking"));
+	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, TEXT("TankPlayerController ticking "));
+	AimTowardsCrosshair();
+}
+
 ATank* ATankPlayerController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
+}
+
+void ATankPlayerController::AimTowardsCrosshair()
+{
+
+	if (!GetControlledTank()) {
+		return;
+	}
+	FVector HitLocation;
+	if (GetSightRayHitLocation(HitLocation)) {//has "side effect" is going to linetrace
+		UE_LOG(LogTemp, Warning, TEXT("TankPlayerController possesing: %s"), (*HitLocation.ToString()));
+	}
+}
+
+//Get world location of linetrace trought crosshair, true if hit landscape
+bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const
+{
+	OutHitLocation = FVector(1.0);
+	return false;
 }
