@@ -48,9 +48,26 @@ void ATankPlayerController::AimTowardsCrosshair()
 //Get world location of linetrace trought crosshair, true if hit landscape
 bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const
 {
+	//Find the crosshair position in pixel coordinates
 	int32 VieportSizeX, VieportSizeY;
 	GetViewportSize(VieportSizeX, VieportSizeY);
 	auto ScreenLocation = FVector2D(VieportSizeX* CrosshairXLocation, VieportSizeY* CrosshairYLocation);
 	//UE_LOG(LogTemp, Warning, TEXT("ScreenLocation: %s"), *ScreenLocation.ToString());
+	
+	FVector LookDirection;
+
+	if (GetLookDirection(ScreenLocation, LookDirection))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("TankPlayerController possesing: %s"), (*LookDirection.ToString()));
+	}
+
 	return true;
+}
+
+bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const
+{	
+	//"De-Project" the screen position of the crosshair to a world direction
+	FVector CameraWorldLocation; //To be discared
+	return DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, CameraWorldLocation, LookDirection);
+	
 }
