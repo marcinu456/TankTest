@@ -41,13 +41,16 @@ void ATankPlayerController::AimTowardsCrosshair()
 	}
 	FVector HitLocation;
 	if (GetSightRayHitLocation(HitLocation)) {//has "side effect" is going to linetrace
-		UE_LOG(LogTemp, Warning, TEXT("TankPlayerController possesing: %s"), (*HitLocation.ToString()));
+		//UE_LOG(LogTemp, Warning, TEXT("TankPlayerController possesing: %s"), (*HitLocation.ToString()));
 	}
 }
 
 //Get world location of linetrace trought crosshair, true if hit landscape
 bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const
 {
-	OutHitLocation = FVector(1.0);
-	return false;
+	int32 VieportSizeX, VieportSizeY;
+	GetViewportSize(VieportSizeX, VieportSizeY);
+	auto ScreenLocation = FVector2D(VieportSizeX* CrosshairXLocation, VieportSizeY* CrosshairYLocation);
+	//UE_LOG(LogTemp, Warning, TEXT("ScreenLocation: %s"), *ScreenLocation.ToString());
+	return true;
 }
