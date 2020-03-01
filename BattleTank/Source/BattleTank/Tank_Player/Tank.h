@@ -28,6 +28,9 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void AimAt(FVector HitLocation);
+
+	UFUNCTION(BlueprintCallable, Category=SetUp)
+	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
