@@ -60,13 +60,13 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		auto OurTankName = GetOwner()->GetName();
 		//UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s"), *OurTankName, *AimDirection.ToString());
 		MoveBarrelTowards(AimDirection);
-		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT(" %f: Aim solution Found"), Time);
+		//auto Time = GetWorld()->GetTimeSeconds();
+		//UE_LOG(LogTemp, Warning, TEXT(" %f: Aim solution Found"), Time);
 	}
 	else
 	{
-		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT(" %f: Aim solution Not Found"), Time);
+		//auto Time = GetWorld()->GetTimeSeconds();
+		//UE_LOG(LogTemp, Warning, TEXT(" %f: Aim solution Not Found"), Time);
 	}
 }
 
