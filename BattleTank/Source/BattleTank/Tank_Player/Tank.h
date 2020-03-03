@@ -44,12 +44,13 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = Firing)
 		float LaunchSpeed = 80000; //TODO find Sensible default
-	
+
+	UPROPERTY(EditAnywhere, Category = Firing)
+		float ReloadTimePerSecond = 3;
+
 	UPROPERTY(EditAnywhere, Category = SetUp)
 		UClass* ProjectileBlueprint;
 
-	UPROPERTY(EditAnywhere, Category = SetUp)
-		float ReloadTimePerSecond = 3;
 
 	double LastFireTime = 0;
 
