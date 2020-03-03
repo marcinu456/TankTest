@@ -44,8 +44,14 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = Firing)
 		float LaunchSpeed = 80000; //TODO find Sensible default
+	
 	UPROPERTY(EditAnywhere, Category = SetUp)
 		UClass* ProjectileBlueprint;
+
+	UPROPERTY(EditAnywhere, Category = SetUp)
+		float ReloadTimePerSecond = 3;
+
+	double LastFireTime = 0;
 
 	//local barrel reference for spawnig projectile
 	UTankBarrel* Barrel = nullptr;
