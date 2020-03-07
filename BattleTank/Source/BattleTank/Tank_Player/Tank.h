@@ -10,6 +10,7 @@
 class UTankBarrel;
 class UTankTurret;
 class UTankAimingComponent;
+class UTankMovementComponent;
 class AProjectile;
 
 UCLASS()
@@ -41,6 +42,8 @@ public:
 		void Fire();
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* TankMovementComponent = nullptr;
 
 	UPROPERTY(EditAnywhere, Category = Firing)
 		float LaunchSpeed = 80000; //TODO find Sensible default
