@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Cookie Core
 
 #include"TankTrack.h"
 #include "TankMovementComponent.h"
@@ -37,7 +37,7 @@ void UTankMovementComponent::IntendTurnRight(float Throw)
 	//UE_LOG(LogTemp, Warning, TEXT(" Indend move right throw: %f"), Throw);
 	if (!LeftTrack || !RightTrack) { return; }
 	LeftTrack->SetThrottle(Throw);
-	RightTrack->SetThrottle(Throw);
+	RightTrack->SetThrottle(-Throw);
 }
 
 
