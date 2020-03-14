@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Fill out yo// Copyright Cookie Core
 
 #pragma once
 
@@ -22,22 +22,13 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
 
-protected:
+private:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
 public:	
-
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void AimAt(FVector HitLocation);
 
-	UFUNCTION(BlueprintCallable, Category = SetUp)
-		void SetBarrelReference(UTankBarrel* BarrelToSet);
-	UFUNCTION(BlueprintCallable, Category = SetUp)
-		void SetTurretReference(UTankTurret* TurretToSet);
 	UFUNCTION(BlueprintCallable)
 		void Fire();
 protected:
@@ -60,5 +51,5 @@ protected:
 	double LastFireTime = 0;
 
 	//local barrel reference for spawnig projectile
-	UTankBarrel* Barrel = nullptr;
+	UTankBarrel* Barrel = nullptr; //TODO remove
 };

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Cookie Core
 
 #pragma once
 
@@ -30,9 +30,9 @@ public:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
+	UFUNCTION(BlueprintCallable, Category = SetUp)
+		void Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
 
-	void SetTurretReference(UTankTurret* TurretToSet);
 
 public:	
 
