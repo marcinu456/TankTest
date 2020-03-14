@@ -1,8 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Cookie Core
 
 
 #include "TankPlayerController.h"
 #include "Tank.h"
+#include "TankAimingComponent.h"
 #include "Engine/Engine.h"
 
 void ATankPlayerController::BeginPlay()
@@ -17,7 +18,14 @@ void ATankPlayerController::BeginPlay()
 		UE_LOG(LogTemp, Warning, TEXT("TankPlayerController possesing: %s"), *(ControlledTank->GetName()));
 		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, TEXT("TankPlayerController possesing a tank "));
 	}
-
+	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+	if (AimingComponent) {
+		FoundAimingComponent(AimingComponent);
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("Player controller can't find aiming component at Begin play"));
+	}
+	
 }
 
 
@@ -33,6 +41,10 @@ ATank* ATankPlayerController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
 }
+
+//void ATankPlayerController::FoundAimingComponent(UTankAimingComponent* AimCompRef)
+//{
+//}
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
