@@ -28,14 +28,14 @@ void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
 	//UE_LOG(LogTemp, Warning, TEXT(" Indend move throw: %f"), Throw);
-	if (!LeftTrack || !RightTrack) { return; }
+	if (!ensure(LeftTrack && RightTrack)) { return; }
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(Throw);
 }
 void UTankMovementComponent::IntendTurnRight(float Throw)
 {
 	//UE_LOG(LogTemp, Warning, TEXT(" Indend move right throw: %f"), Throw);
-	if (!LeftTrack || !RightTrack) { return; }
+	if (!ensure(LeftTrack && RightTrack)) { return; }
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(-Throw);
 }

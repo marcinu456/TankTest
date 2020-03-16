@@ -19,7 +19,7 @@ void ATankPlayerController::BeginPlay()
 		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, TEXT("TankPlayerController possesing a tank "));
 	}
 	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
-	if (AimingComponent) {
+	if (ensure(AimingComponent)) {
 		FoundAimingComponent(AimingComponent);
 	}
 	else {
@@ -49,7 +49,7 @@ ATank* ATankPlayerController::GetControlledTank() const
 void ATankPlayerController::AimTowardsCrosshair()
 {
 
-	if (!GetControlledTank()) {
+	if (!ensure(GetControlledTank())) {
 		return;
 	}
 	FVector HitLocation;
