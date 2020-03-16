@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
@@ -15,41 +14,35 @@ enum class EFiringState : uint8
 	Locked
 };
 
-
-//Forward Declaration
+// Forward Declaration
 class UTankBarrel;
 class UTankTurret;
 
-//Hold parameters for barrel's
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+// Holds barrel's properties and Elevate method
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class BATTLETANK_API UTankAimingComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
+public:
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+		void Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
+
+	void AimAt(FVector HitLocation);
+
+protected:
+	UPROPERTY(BlueprintReadOnly, Category = "State")
+		EFiringState FiringState = EFiringState::Locked;
+
+private:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
-	UFUNCTION(BlueprintCallable, Category = SetUp)
-		void Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
-
-
-public:	
-
-	
-	//TODO add SetTurrentReference
-
-	void AimAt(FVector HitLocation, float LaunchSpeed);
-	
-	void MoveBarrelTowards(FVector AimDirection);
-
-protected:
-	UPROPERTY(BlueprintReadOnly, Category = State)
-		EFiringState FiringState = EFiringState::Locked;
-
-
-private:
 	UTankBarrel* Barrel = nullptr;
-
 	UTankTurret* Turret = nullptr;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+		float LaunchSpeed = 4000;
+
+	void MoveBarrelTowards(FVector AimDirection);
 };
