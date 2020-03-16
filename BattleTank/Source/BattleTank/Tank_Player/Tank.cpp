@@ -4,7 +4,7 @@
 #include "TankBarrel.h"
 #include "Projectile.h"
 #include "TankAimingComponent.h"
-#include "TankMovementComponent.h"
+
 
 // Sets default values
 ATank::ATank()
@@ -21,6 +21,7 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
 	auto TankName = GetName();
 	UE_LOG(LogTemp, Warning, TEXT("%s Donkey: C++ BeginPlay:"), *TankName);
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
 
 
