@@ -18,8 +18,14 @@ public:
 		AActor* DamageCauser
 	)override;
 	// Sets default values for this pawn's properties
-	ATank();
+
+	//Return Current Healt between 0-1
+	UFUNCTION(BlueprintPure, Category = Health)
+		float GetHealthPercent() const;
+
 private:
+	ATank();
+
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
 		int32 StartingHealth = 100;
 
