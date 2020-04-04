@@ -47,14 +47,14 @@ void ATankAIController::SetPawn(APawn* InPawn)
 	Super::SetPawn(InPawn);
 	if (InPawn) {
 		auto PossessedTank = Cast<ATank>(InPawn);
-		if (!ensure(PossessedTank)) { return; }
+		if (PossessedTank) { return; }
 		PossessedTank->OnDeath.AddUniqueDynamic(this, &ATankAIController::OnPossedTankDeath);
 	}
 }
 
 void ATankAIController::OnPossedTankDeath()
 {
-	if (!ensure(GetPawn())) { return; }
+	if (GetPawn()) { return; }
 	GetPawn()->DetachFromControllerPendingDestroy();
 }
 
